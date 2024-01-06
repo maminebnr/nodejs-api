@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const authRoutes = require('./routes/auth')
 const postRoutes = require('./routes/posts')
-
+const swaggerDoc = require('./swagger')
 dotenv.config()
 const MONGODB_URI = process.env.MONGODB_URI
 const PORT = process.env.PORT || 5000
@@ -13,6 +13,7 @@ const app = express();
 app.use(express.json());
 app.use('/auth',authRoutes)
 app.use('/posts',postRoutes)
+app.use('/api-docs',swaggerDoc.serve,swaggerDoc.setup)
 
 
 //test app first route

@@ -5,7 +5,41 @@ const jwt = require('jsonwebtoken')
 const User = require('../models/user');
 const router = express.Router();
 
+/**
+ * @swagger
+ * tags:
+ *  name:Authentitcation
+ *  description:User authentication endpoints
+ */
 
+/**
+ * @swagger
+ * /auth/register:
+ *   post:
+ *     summary: Register a new user
+ *     description: Create a new user account with username and password.
+ *     tags: [Authentication]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *             required:
+ *                - username
+ *                - password
+ *                
+ *     responses:
+ *       '201':
+ *         description: User registered successfully
+ *       '400':
+ *         description: Bad request
+ */
 router.post('/register',async (req,res)=>{
     try {
         const {username,password}=req.body;
